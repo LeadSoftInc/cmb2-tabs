@@ -2,6 +2,9 @@
 
 Extensions the tabs to the library CMB2
 
+### Preview
+![tabs](http://dtheme.studio/static/demo-cmb2-tabs.png)
+
 ### Example
 ```php
 add_filter( 'cmb2_init', 'example_tabs_metaboxes' );

@@ -11,7 +11,7 @@ class Assets {
 
 	public function admin_assets() {
 		// css
-		wp_enqueue_style( 'dtheme-cmb2-tabs', plugin_dir_url( __DIR__ ) . '/assets/css/cmb2-tabs.css', array(), \dTheme::$theme_version );
+		wp_enqueue_style( 'dtheme-cmb2-tabs', plugin_dir_url( __DIR__ ) . '/assets/css/cmb2-tabs.css', array(), '1.0.1' );
 
 		// js
 		wp_enqueue_script( 'jquery-ui' );

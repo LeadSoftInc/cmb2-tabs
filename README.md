@@ -5,7 +5,13 @@ Extensions the tabs to the library CMB2
 ### Preview
 ![tabs](http://dtheme.studio/static/demo-cmb2-tabs.png)
 
+### Changelog
+
+*   1.0.0 Init
+*   1.0.1 Added support the "options page"
+
 ### Example
+
 ```php
 add_filter( 'cmb2_init', 'example_tabs_metaboxes' );
 

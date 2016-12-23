@@ -20,4 +20,4 @@ if ( is_admin() ) {
 	new inc\CMB2_Tabs();
 }
 
-//include __DIR__ . '/example.php';
+include __DIR__ . '/example.php';

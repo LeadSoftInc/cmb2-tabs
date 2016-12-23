@@ -44,6 +44,10 @@ class CMB2_Tabs {
 					$CMB2           = new \CMB2( $setting_fields, $object_id );
 
 					foreach ( $tab['fields'] as $key_field => $field ) {
+						if ( $CMB2->is_options_page_mb() ) {
+							$CMB2->object_type( $settings['args']['object_type'] );
+						}
+
 						// cmb2 render field
 						$CMB2->render_field( $field );
 					}
@@ -68,7 +72,16 @@ class CMB2_Tabs {
 		foreach ( $data['tabs']['tabs'] as $tab ) {
 			$setting_fields = array_merge( $data['tabs']['args'], array( 'fields' => $tab['fields'] ) );
 			$CMB2           = new \CMB2( $setting_fields, $post_id );
-			$CMB2->save_fields();
+
+			if ( $CMB2->is_options_page_mb() ) {
+				$cmb2_options = cmb2_options( $post_id );
+				$values       = $CMB2->get_sanitized_values( $_POST );
+				foreach ( $values as $key => $value ) {
+					$cmb2_options->update( $key, $value );
+				}
+			} else {
+				$CMB2->save_fields();
+			}
 		}
 	}
 }

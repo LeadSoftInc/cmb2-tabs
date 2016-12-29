@@ -9,6 +9,7 @@ Extensions the tabs to the library CMB2
 
 *   1.0.0 Init
 *   1.0.1 Added support the "options page"
+*   1.2.1 Support for custom attributes for the tabs container
 
 ### Example
 

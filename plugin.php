@@ -2,7 +2,7 @@
 /*
 Plugin Name: CMB2 Tabs
 Plugin URI: https://github.com/dThemeStudio/cmb2-tabs
-Version: 1.0.1
+Version: 1.2.2
 Author: dTheme Studio
 Author URI: http://dtheme.studio/
 */
@@ -16,8 +16,8 @@ if ( is_admin() ) {
 	// connection css and js
 	new inc\Assets();
 
-	// run global hooks
+	// run global class
 	new inc\CMB2_Tabs();
 }
 
-include __DIR__ . '/example.php';
+ include __DIR__ . '/example.php';

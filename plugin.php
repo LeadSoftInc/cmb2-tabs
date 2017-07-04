@@ -2,7 +2,7 @@
 /*
 Plugin Name: CMB2 Tabs
 Plugin URI: https://github.com/dThemeStudio/cmb2-tabs
-Version: 1.2.2
+Version: 1.2.3
 Author: dTheme Studio
 Author URI: http://dtheme.studio/
 */

@@ -7,10 +7,11 @@ Extensions the tabs to the library CMB2
 
 ### Changelog
 
-*   1.0.0 Init
-*   1.0.1 Added support the "options page"
-*   1.2.1 Support for custom attributes for the tabs container
+*   1.2.3 Added license to the project
 *   1.2.2 Support vertical layout
+*   1.2.1 Support for custom attributes for the tabs container
+*   1.0.1 Added support the "options page"
+*   1.0.0 Init
 
 ### Example metabox
 
@@ -224,3 +225,6 @@ function example_options_page_metabox() {
 ##### Preview
 ![options-page-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/options-page-horizontal.png)
 ![options-page-vertical](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/options-page-vertical.png)
+
+### License
+**cmb2-tabs** is an open source project that is licensed under the [MIT license](http://opensource.org/licenses/MIT).

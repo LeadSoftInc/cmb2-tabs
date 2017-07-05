@@ -35,13 +35,13 @@ class CMB2_Tabs {
 		$this->setting   = $field_object->args( 'tabs' );
 		$this->object_id = $object_id;
 
-		// set layout
+		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
 		$default_data = $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
 			'class' => "dtheme-cmb2-tabs $layout",
 		) );
 
-		// render field
+		// Render field
 		echo sprintf( '<div %s>%s</div>', $field_type_object->concat_attrs( $default_data, array(
 			'value',
 			'name',
@@ -68,7 +68,7 @@ class CMB2_Tabs {
 		<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
 			<div id="<?php echo $tab['id']; ?>">
 				<?php
-				// render fields from tab
+				// Render fields from tab
 				$this->render_fields( $this->setting['config'], $tab['fields'], $this->object_id );
 				?>
 			</div>
@@ -86,7 +86,7 @@ class CMB2_Tabs {
 	 * @param $object_id
 	 */
 	public function render_fields( $args, $fields, $object_id ) {
-		// set options to cmb2
+		// Set options to cmb2
 		$setting_fields = array_merge( $args, array( 'fields' => $fields ) );
 		$CMB2           = new \CMB2( $setting_fields, $object_id );
 
@@ -94,7 +94,7 @@ class CMB2_Tabs {
 			if ( $CMB2->is_options_page_mb() ) {
 				$CMB2->object_type( $args['object_type'] );
 			}
-			// cmb2 render field
+			// Cmb2 render field
 			$CMB2->render_field( $field );
 		}
 	}

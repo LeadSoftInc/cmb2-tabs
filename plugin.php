@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: CMB2 Tabs
+Plugin Name: Tabs for CMB2
 Plugin URI: https://github.com/LeadSoftInc/cmb2-tabs
 Description: Extensions the tabs to the library CMB2
 Version: 1.2.3

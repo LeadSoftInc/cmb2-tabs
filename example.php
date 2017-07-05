@@ -2,8 +2,8 @@
 /*
  * Example metabox
  */
-add_filter( 'cmb2_init', 'example_tabs_metaboxes' );
-function example_tabs_metaboxes() {
+add_filter( 'cmb2_init', 'cmbt_example_metaboxes' );
+function cmbt_example_metaboxes() {
 	$box_options = array(
 		'id'           => 'example_tabs_metaboxes',
 		'title'        => __( 'Example tabs', 'cmb2' ),
@@ -14,10 +14,10 @@ function example_tabs_metaboxes() {
 	// Setup meta box
 	$cmb = new_cmb2_box( $box_options );
 
-	// setting tabs
+	// Setting tabs
 	$tabs_setting           = array(
 		'config' => $box_options,
-		//		'layout' => 'vertical', // Default : horizontal
+		// 'layout' => 'vertical', // Default : horizontal
 		'tabs'   => array()
 	);
 	$tabs_setting['tabs'][] = array(
@@ -91,7 +91,7 @@ function example_tabs_metaboxes() {
 		)
 	);
 
-	// set tabs
+	// Set tabs
 	$cmb->add_field( array(
 		'id'   => '__tabs',
 		'type' => 'tabs',
@@ -102,8 +102,8 @@ function example_tabs_metaboxes() {
 /*
  * Example options page
  */
-add_action( 'cmb2_admin_init', 'example_options_page_metabox' );
-function example_options_page_metabox() {
+add_action( 'cmb2_admin_init', 'cmbt_example_options_page_metabox' );
+function cmbt_example_options_page_metabox() {
 	$box_options = array(
 		'id'          => 'myprefix_option_metabox',
 		'title'       => __( 'Example tabs', 'cmb2' ),

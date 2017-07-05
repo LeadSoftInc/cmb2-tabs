@@ -10,10 +10,10 @@ class Assets {
 
 
 	public function admin_assets() {
-		// css
+		// Css
 		wp_enqueue_style( 'dtheme-cmb2-tabs', plugin_dir_url( __DIR__ ) . '/assets/css/cmb2-tabs.css', array(), '1.0.1' );
 
-		// js
+		// Js
 		wp_enqueue_script( 'jquery-ui' );
 		wp_enqueue_script( 'dtheme-cmb2-tabs', plugin_dir_url( __DIR__ ) . '/assets/js/cmb2-tabs.js', array( 'jquery-ui-tabs' ) );
 	}

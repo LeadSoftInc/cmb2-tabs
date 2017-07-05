@@ -1,23 +1,22 @@
 <?php
 /*
 Plugin Name: CMB2 Tabs
-Plugin URI: https://github.com/dThemeStudio/cmb2-tabs
+Plugin URI: https://github.com/LeadSoftInc/cmb2-tabs
+Description: Extensions the tabs to the library CMB2
 Version: 1.2.3
-Author: dTheme Studio
-Author URI: http://dtheme.studio/
+Author: LeadSoft Inc.
+Author URI: http://leadsoft.org/
 */
 
 namespace cmb2_tabs;
 
 if ( is_admin() ) {
-	// run autoloader
+	// Run autoloader
 	include __DIR__ . '/autoloader.php';
 
-	// connection css and js
+	// Connection css and js
 	new inc\Assets();
 
-	// run global class
+	// Run global class
 	new inc\CMB2_Tabs();
 }
-
-// include __DIR__ . '/example.php';

@@ -37,7 +37,9 @@ class CMB2_Tabs {
 
 		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
-		$default_data = $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
+		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? [
+			'class' => "dtheme-cmb2-tabs $layout",
+		] : $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
 			'class' => "dtheme-cmb2-tabs $layout",
 		) );
 

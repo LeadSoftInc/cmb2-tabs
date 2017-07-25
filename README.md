@@ -3,10 +3,11 @@
 Extensions the tabs to the library CMB2
 
 ### Preview
-![tabs](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/metabox-horizontal.png)
+![tabs](https://github.com/dThemeStudio/cmb2-tabs/raw/master/assets/screenshots/metabox-horizontal.png)
 
 ### Changelog
 
+*   2.0.0 Project added to packagist and reworked the structure under the composer
 *   1.2.3 Added license to the project
 *   1.2.2 Support vertical layout
 *   1.2.1 Support for custom attributes for the tabs container
@@ -114,8 +115,8 @@ function example_tabs_metaboxes() {
 }
 ```
 ##### Preview
-![metabox-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/metabox-horizontal.png)
-![metabox-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/metabox-vertical.png)
+![metabox-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/assets/screenshots/metabox-horizontal.png)
+![metabox-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/assets/screenshots/metabox-vertical.png)
 
 ### Example options page
 ```php
@@ -223,8 +224,8 @@ function example_options_page_metabox() {
 ```
 
 ##### Preview
-![options-page-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/options-page-horizontal.png)
-![options-page-vertical](https://github.com/dThemeStudio/cmb2-tabs/raw/master/screenshots/options-page-vertical.png)
+![options-page-horizontal](https://github.com/dThemeStudio/cmb2-tabs/raw/master/assets/screenshots/options-page-horizontal.png)
+![options-page-vertical](https://github.com/dThemeStudio/cmb2-tabs/raw/master/assets/screenshots/options-page-vertical.png)
 
 ### License
 **cmb2-tabs** is an open source project that is licensed under the [MIT license](http://opensource.org/licenses/MIT).

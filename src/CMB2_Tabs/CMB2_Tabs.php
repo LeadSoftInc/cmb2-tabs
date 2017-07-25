@@ -1,14 +1,10 @@
 <?php
 
-namespace cmb2_tabs\inc;
+namespace CMB2_Tabs;
 
-/**
- * Class CMB2_Tabs
- * @package cmb2_tabs\inc
- * @since   1.2.2
- */
 class CMB2_Tabs {
 
+	public  $version   = '2.0.0';
 	private $setting   = array();
 	private $object_id = 0;
 
@@ -19,17 +15,31 @@ class CMB2_Tabs {
 	public function __construct() {
 		add_action( 'cmb2_render_tabs', array( $this, 'render' ), 10, 5 );
 		add_filter( 'cmb2_sanitize_tabs', array( $this, 'save' ), 10, 4 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_assets' ) );
+	}
+
+
+	/**
+	 * Hook: Connect to admin panel the files CSS and JavaScript
+	 */
+	public function admin_assets() {
+		// CSS
+		wp_enqueue_style( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname( __DIR__ ) ) . '/assets/css/cmb2-tabs.css', array(), $this->version );
+
+		// JavaScript
+		wp_enqueue_script( 'jquery-ui' );
+		wp_enqueue_script( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname(__DIR__) ) . '/assets/js/cmb2-tabs.js', array( 'jquery-ui-tabs' ), $this->version );
 	}
 
 
 	/**
 	 * Hook: Render field
 	 *
-	 * @param $field_object
-	 * @param $escaped_value
-	 * @param $object_id
-	 * @param $object_type
-	 * @param $field_type_object
+	 * @param \CMB2_Field $field_object
+	 * @param             $escaped_value
+	 * @param             $object_id
+	 * @param             $object_type
+	 * @param \CMB2_Types $field_type_object
 	 */
 	public function render( \CMB2_Field $field_object, $escaped_value, $object_id, $object_type, \CMB2_Types $field_type_object ) {
 		$this->setting   = $field_object->args( 'tabs' );
@@ -96,7 +106,7 @@ class CMB2_Tabs {
 			if ( $CMB2->is_options_page_mb() ) {
 				$CMB2->object_type( $args['object_type'] );
 			}
-			// Cmb2 render field
+			// CMB2 render field
 			$CMB2->render_field( $field );
 		}
 	}
@@ -115,6 +125,7 @@ class CMB2_Tabs {
 			$setting_fields = array_merge( $data['tabs']['config'], array( 'fields' => $tab['fields'] ) );
 			$CMB2           = new \CMB2( $setting_fields, $post_id );
 
+			// Option page
 			if ( $CMB2->is_options_page_mb() ) {
 				$cmb2_options = cmb2_options( $post_id );
 				$id_fields    = array_map( function( $field ) {
@@ -133,3 +144,4 @@ class CMB2_Tabs {
 	}
 
 }
+

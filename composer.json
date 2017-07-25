@@ -1,0 +1,23 @@
+{
+    "name": "leadsoftinc/cmb2-tabs",
+    "description": "Extensions the tabs to the library CMB2",
+    "type": "wordpress-plugin",
+    "homepage": "http://leadsoft.org",
+    "license": "MIT",
+    "keywords": [],
+    "authors": [
+        {
+            "name": "kuzmenko1256",
+            "email": "kuzmenko1256@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/LeadSoftInc/cmb2-tabs/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    },
+    "require": {}
+}

@@ -3,20 +3,15 @@
 Plugin Name: Tabs for CMB2
 Plugin URI: https://github.com/LeadSoftInc/cmb2-tabs
 Description: Extensions the tabs to the library CMB2
-Version: 1.2.3
+Version: 2.0.0
 Author: LeadSoft Inc.
 Author URI: http://leadsoft.org/
 */
 
-namespace cmb2_tabs;
+// Autoload
+$loader = require __DIR__ . '/vendor/autoload.php';
 
-if ( is_admin() ) {
-	// Run autoloader
-	include __DIR__ . '/autoloader.php';
-
-	// Connection css and js
-	new inc\Assets();
-
-	// Run global class
-	new inc\CMB2_Tabs();
-}
+// Run plugin
+add_action( 'plugins_loaded', function() {
+	new CMB2_Tabs\CMB2_Tabs();
+} );

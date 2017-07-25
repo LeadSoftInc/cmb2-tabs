@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LeadSoftInc\\CMB2_Tabs\\": "src"
+            "": "src"
         }
     },
     "require": {}

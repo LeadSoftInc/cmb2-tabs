@@ -24,11 +24,11 @@ class CMB2_Tabs {
 	 */
 	public function admin_assets() {
 		// CSS
-		wp_enqueue_style( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname( __DIR__ ) ) . '/assets/css/cmb2-tabs.css', array(), $this->version );
+		wp_enqueue_style( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname( __DIR__ ) ) . 'assets/css/cmb2-tabs.css', array(), $this->version );
 
 		// JavaScript
 		wp_enqueue_script( 'jquery-ui' );
-		wp_enqueue_script( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname(__DIR__) ) . '/assets/js/cmb2-tabs.js', array( 'jquery-ui-tabs' ), $this->version );
+		wp_enqueue_script( 'LeadSoftInc-cmb2-tabs', plugin_dir_url( dirname(__DIR__) ) . 'assets/js/cmb2-tabs.js', array( 'jquery-ui-tabs' ), $this->version );
 	}
 
 

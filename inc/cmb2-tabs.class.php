@@ -31,15 +31,15 @@ class CMB2_Tabs {
 	 * @param $object_type
 	 * @param $field_type_object
 	 */
-	public function render( $field_object, $escaped_value, $object_id, $object_type, $field_type_object ) {
+	public function render( \CMB2_Field $field_object, $escaped_value, $object_id, $object_type, \CMB2_Types $field_type_object ) {
 		$this->setting   = $field_object->args( 'tabs' );
 		$this->object_id = $object_id;
 
 		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
-		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? [
+		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? array(
 			'class' => "dtheme-cmb2-tabs $layout",
-		] : $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
+		) : $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
 			'class' => "dtheme-cmb2-tabs $layout",
 		) );
 
@@ -61,19 +61,19 @@ class CMB2_Tabs {
 		ob_start();
 		?>
 
-		<ul>
+        <ul>
 			<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-				<li><a href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
+                <li><a href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
 			<?php endforeach; ?>
-		</ul>
+        </ul>
 
 		<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-			<div id="<?php echo $tab['id']; ?>">
+            <div id="<?php echo $tab['id']; ?>">
 				<?php
 				// Render fields from tab
 				$this->render_fields( $this->setting['config'], $tab['fields'], $this->object_id );
 				?>
-			</div>
+            </div>
 		<?php endforeach;
 
 		return ob_get_clean();
@@ -117,13 +117,19 @@ class CMB2_Tabs {
 
 			if ( $CMB2->is_options_page_mb() ) {
 				$cmb2_options = cmb2_options( $post_id );
-				$values       = $CMB2->get_sanitized_values( $_POST );
-				foreach ( $values as $key => $value ) {
-					$cmb2_options->update( $key, $value );
+				$id_fields    = array_map( function( $field ) {
+					return $field['id'];
+				}, $tab['fields'] );
+
+				foreach ( $_POST as $key => $value ) {
+					if ( array_search( $key, $id_fields ) !== false ) {
+						$cmb2_options->update( $key, $value );
+					}
 				}
 			} else {
 				$CMB2->save_fields();
 			}
 		}
 	}
+
 }

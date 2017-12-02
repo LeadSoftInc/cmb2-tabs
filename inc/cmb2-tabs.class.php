@@ -38,9 +38,9 @@ class CMB2_Tabs {
 		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
 		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? array(
-			'class' => "dtheme-cmb2-tabs $layout",
+			'class' => "ui-tabs dtheme-cmb2-tabs $layout",
 		) : $field_type_object->parse_args( $field_object->data_args(), 'tabs', array(
-			'class' => "dtheme-cmb2-tabs $layout",
+			'class' => "ui-tabs dtheme-cmb2-tabs $layout",
 		) );
 
 		// Render field
@@ -60,15 +60,14 @@ class CMB2_Tabs {
 	public function get_tabs() {
 		ob_start();
 		?>
-
-        <ul>
+        <ul class="ui-tabs-nav">
 			<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-                <li><a href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
+                <li class="<?php if($key==0){ echo ' ui-tabs-active '; } ?>"><a class="ui-tabs-anchor" href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
 			<?php endforeach; ?>
         </ul>
 
 		<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-            <div id="<?php echo $tab['id']; ?>">
+            <div class="ui-tabs-panel<?php if($key==0){ echo ' ui-tabs-active'; } ?>" id="<?php echo $tab['id']; ?>">
 				<?php
 				// Render fields from tab
 				$this->render_fields( $this->setting['config'], $tab['fields'], $this->object_id );

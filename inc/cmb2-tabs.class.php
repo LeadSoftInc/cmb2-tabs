@@ -62,19 +62,33 @@ class CMB2_Tabs {
 		?>
 
         <ul>
-			<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-                <li><a href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
-			<?php endforeach; ?>
+		<?php 
+		foreach ( $this->setting['tabs'] as $key => $tab ): 
+			$show_callback = $tab["show_on_cb"];
+			$show_callback = function_exists($show_callback) ? call_user_func($show_callback) : true;
+			if($show_callback) {
+		?>
+		 <li><a href="#<?php echo $tab['id']; ?>"><?php echo $tab['title']; ?></a></li>
+		<?php 
+			}
+		endforeach; ?>
         </ul>
 
-		<?php foreach ( $this->setting['tabs'] as $key => $tab ): ?>
-            <div id="<?php echo $tab['id']; ?>">
+		<?php 
+		foreach ( $this->setting['tabs'] as $key => $tab ):
+			$show_callback = $tab["show_on_cb"];
+			$show_callback = function_exists($show_callback) ? call_user_func($show_callback) : true;
+			if($show_callback) {
+		?>
+		            <div id="<?php echo $tab['id']; ?>">
 				<?php
 				// Render fields from tab
 				$this->render_fields( $this->setting['config'], $tab['fields'], $this->object_id );
 				?>
-            </div>
-		<?php endforeach;
+		            </div>
+		<?php 	
+			}
+		endforeach;
 
 		return ob_get_clean();
 	}

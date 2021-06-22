@@ -35,8 +35,6 @@ class CMB2_Tabs {
 		$this->setting   = $field_object->args( 'tabs' );
 		$this->object_id = $object_id;
 
-		error_log('escaped value: ' . var_export( $escaped_value, true ) );
-
 		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
 		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? array(
@@ -140,7 +138,7 @@ class CMB2_Tabs {
 	 * @param $post_id
 	 * @param $data
 	 */
-	public static function save( $override_value, $value, $post_id, $data, $levels = 5 ) {
+	public static function save( $override_value, $value, $post_id, $data ) {
 		foreach ( $data['tabs']['tabs'] as $tab ) {
 			$setting_fields = array_merge( $data['tabs']['config'], array( 'fields' => $tab['fields'] ) );
 			$CMB2           = new \CMB2( $setting_fields, $post_id );

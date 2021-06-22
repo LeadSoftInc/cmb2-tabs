@@ -35,6 +35,8 @@ class CMB2_Tabs {
 		$this->setting   = $field_object->args( 'tabs' );
 		$this->object_id = $object_id;
 
+		error_log('escaped value: ' . var_export( $escaped_value, true ) );
+
 		// Set layout
 		$layout       = empty( $this->setting['layout'] ) ? 'ui-tabs-horizontal' : "ui-tabs-{$this->setting['layout']}";
 		$default_data = version_compare( CMB2_VERSION, '2.2.2', '>=' ) ? array(
@@ -103,6 +105,34 @@ class CMB2_Tabs {
 
 
 	/**
+	 * Recursively checks if a field has tabs, if it does, retrieve all of the fields from each tab, then repeat
+	 * 
+	 * @param $field
+	 */
+	public static function get_fields_from_nested_tabs( $field ) {
+		$fields = array();
+
+		if ( isset( $field['tabs'] ) ) {
+			foreach ( $field['tabs']['tabs'] as $tab_field_tab ) {
+				if ( isset( $tab_field_tab['fields'] ) ) {
+					foreach ( $tab_field_tab['fields'] as $tab_field_tab_field ) {
+						$fields[] = $tab_field_tab_field;
+
+						$fields_in_nested_tabs = self::get_fields_from_nested_tabs( $tab_field );
+
+						foreach ( $fields_in_nested_tabs as $field_in_nested_tabs ) {
+							$fields[] = $field_in_nested_tabs;
+						}
+					}
+				}
+			}
+		}
+
+		return $fields;
+	}
+
+
+	/**
 	 * Hook: Save field values
 	 *
 	 * @param $override_value
@@ -110,16 +140,29 @@ class CMB2_Tabs {
 	 * @param $post_id
 	 * @param $data
 	 */
-	public static function save( $override_value, $value, $post_id, $data ) {
+	public static function save( $override_value, $value, $post_id, $data, $levels = 5 ) {
 		foreach ( $data['tabs']['tabs'] as $tab ) {
 			$setting_fields = array_merge( $data['tabs']['config'], array( 'fields' => $tab['fields'] ) );
 			$CMB2           = new \CMB2( $setting_fields, $post_id );
 
 			if ( $CMB2->is_options_page_mb() ) {
+				$fields_to_check = array();
+
+				foreach ( $tab['fields'] as $tab_field ) {
+					$fields_to_check[] = $tab_field;
+
+					$fields_in_nested_tabs = self::get_fields_from_nested_tabs( $tab_field );
+
+					foreach ( $fields_in_nested_tabs as $field_in_nested_tabs ) {
+						$fields_to_check[] = $field_in_nested_tabs;
+					}
+				}
+
+
 				$cmb2_options = cmb2_options( $post_id );
 				$id_fields    = array_map( function( $field ) {
 					return $field['id'];
-				}, $tab['fields'] );
+				}, $fields_to_check );
 
 				foreach ( $_POST as $key => $value ) {
 					if ( array_search( $key, $id_fields ) !== false ) {

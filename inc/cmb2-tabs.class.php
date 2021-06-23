@@ -116,7 +116,7 @@ class CMB2_Tabs {
 					foreach ( $tab_field_tab['fields'] as $tab_field_tab_field ) {
 						$fields[] = $tab_field_tab_field;
 
-						$fields_in_nested_tabs = self::get_fields_from_nested_tabs( $tab_field );
+						$fields_in_nested_tabs = self::get_fields_from_nested_tabs( $tab_field_tab_field );
 
 						foreach ( $fields_in_nested_tabs as $field_in_nested_tabs ) {
 							$fields[] = $field_in_nested_tabs;
